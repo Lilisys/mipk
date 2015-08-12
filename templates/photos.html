@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% set active_page = "photos" %}
+
+{% block content %}
+
+
+
+<div class="container">
+    <h1 align="center">Photos</h1>
+    <div class="row">
+      <div class="col-sm-4">
+        <img src="{{ url_for('static', filename='photos/dental.jpg') }}" class="img-responsive" alt="Rounded Image">
+       
+      </div>
+      <div class="col-sm-4">
+        <img src="{{ url_for('static', filename='photos/flint.jpg') }}" class="img-responsive" alt="Rounded Image">
+      </div>
+      <div class="col-sm-4">
+           <img src="https://scontent-atl1-1.xx.fbcdn.net/hphotos-prn2/v/t1.0-9/1391769_254528168034553_1193864091_n.jpg?oh=bcc0567b6198d4bd2b2ba61c65b2d97d&oe=56785F37" class="img-responsive" alt="Rounded Image">
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}
