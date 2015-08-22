@@ -18,8 +18,10 @@
   {% set active_page = active_page|default('contact') -%}
   {% set navigation_bar = [
     ('/', 'index', 'Home', 'glyphicon-home'),
-    ('/contact/', 'contact', 'Contact', 'glyphicon-user'),
-    ('/photos/', 'photos', 'Photos', 'glyphicon-picture')
+    ('/locations/', 'locations', 'Locations', 'glyphicon-map-marker'),
+    ('/media/', 'media', 'Media', 'glyphicon-picture'),
+    ('/events/', 'events', 'Events', 'glyphicon-calendar'),
+    ('/contact/', 'contact', 'Contact', 'glyphicon-user')
   ] -%}
   <body>
     <nav role="navigation" class="navbar navbar-default">
@@ -41,9 +43,6 @@
                   %}><a href="{{ href|e }}"><span class="glyphicon {{glyph|e}}"></span> {{ caption|e }}</a></li>
               {% endfor %}
 
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Login</a></li>
             </ul>
         </div>
     </nav>
