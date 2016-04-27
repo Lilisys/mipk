@@ -10,7 +10,7 @@
   <meta name="author" content="Jessica Wu, Vanya Prokopovich">
   
   <title>Michigan Parkour</title>
-  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+  <link rel="shortcut icon" href="{{ url_for('static', filename='images/logo.svg') }}" />
   
   <!-- Bootstrap Core CSS -->
   <link rel="stylesheet" type = "text/css" href="{{url_for('static', filename='css/bootstrap.min.css')}}" >
@@ -22,42 +22,48 @@
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"-->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
   
   
   
   {% endblock %}
 </head>
 
-{% set active_page = active_page|default('contact') -%}
+{% set active_page = active_page|default('index') -%}
 {% set navigation_bar = [
-  ('/', 'index', 'Home', 'glyphicon-home'),
-  ('/locations/', 'locations', 'Locations', 'glyphicon-map-marker'),
-  ('/media/', 'media', 'Media', 'glyphicon-picture'),
-  ('/events/', 'events', 'Events', 'glyphicon-calendar'),
-  ('/contact/', 'contact', 'Contact', 'glyphicon-user')
+  ('#', 'index', 'Home', 'glyphicon-home'),
+  ('#locations', 'locations', 'Locations', 'glyphicon-map-marker'),
+  ('#events', 'events', 'Events', 'glyphicon-calendar'),
+  ('#contact', 'contact', 'Contact', 'glyphicon-user')
   ] -%}
   <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-                </button>
-        <a href="/" class="nav-brand"><img src="{{ url_for('static', filename='logo.png') }}" class="img-responsive" align="middle"></a>
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="/" class="nav-brand"><img height="30" width="30" src="{{ url_for('static', filename='images/logo.svg') }}" class="img-responsive" align="middle"></a>
       </div>
       <!-- Collection of nav links and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav">
           {% for href, id, caption, glyph in navigation_bar %}
-          <li{% if id == active_page %} class="active"{% endif
-          %}><a href="{{ href|e }}"><span class="glyphicon {{glyph|e}}"></span> {{ caption|e }}</a></li>
+            <!-- On locations page, only let nav lead home-->
+            {% if "locations" == active_page and id == "index" %} 
+              <li>
+              <a href="/"><span class="glyphicon {{glyph|e}}"></span> {{ caption|e}}</a>  
+            </li>
+            <!-- On main page, show all nav links-->
+            {% elif "locations" != active_page %}
+              <li>
+                <a href="{{ href|e }}"><span class="glyphicon {{glyph|e}}"></span> {{ caption|e}}</a>
+              </li>    
+            {% endif%}
+          
           {% endfor %}
 
         </ul>
@@ -69,7 +75,7 @@
     <!-- Full Width Image Header with Logo -->
     <!-- Image backgrounds are set within the full-width-pics.css file. -->
     <header class="image-bg-fluid-height">
-      <img class="img-responsive img-center" src="{{ url_for('static', filename='logo200x200.png') }}"  alt="">
+      <img  height="200" width="200" class="img-responsive img-center" src="{{ url_for('static', filename='images/logo.svg') }}"  alt="">
         
     </header>
 
@@ -78,5 +84,26 @@
       {% block footer %}
       {% endblock %}
     </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+  
+
   </body>
+
+
+        <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Michigan Parkour 2016</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </footer>
+
   </html>
